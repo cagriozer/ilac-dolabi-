@@ -343,8 +343,8 @@ async function lookupBarcodeCode(barcode) {
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 1000,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
-        messages: [{ role: "user", content: `Sen bir ilaç bilgi asistanısın. Barkod: ${barcode}. Bu barkoda ait Türkiye ilaç piyasasındaki ilacın bilgilerini JSON olarak ver: {"name":"","purpose":"","diseases":"","dosage":"","active":""}. Sadece JSON döndür.` }]
+        messages: [{ role: "user", content: `Türkiye'de satılan bir ilacın barkod numarası: ${barcode}. Bu barkoda sahip ilacın adını ve bilgilerini biliyorsun. Mutlaka aşağıdaki JSON formatında yanıt ver, asla boş bırakma:
+ ${barcode}. Bu barkoda ait Türkiye ilaç piyasasındaki ilacın bilgilerini JSON olarak ver: {"name":"","purpose":"","diseases":"","dosage":"","active":""}. Sadece JSON döndür.` }]
       })
     });
     const data = await response.json();
