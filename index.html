@@ -369,7 +369,18 @@ function saveCurrentDrug() {
   if (cabinet.find(d => d.name === drug.name)) { showToast('Bu ilaç zaten dolabınızda!'); return; }
   cabinet.unshift(drug);
   save(); updateBadge();
+  function resetPhoto() {
+  photoBase64 = null;
+  document.getElementById('photo-input').value = '';
+  document.getElementById('photo-preview').src = '';
+  document.getElementById('photo-preview').style.display = 'none';
+  document.querySelector('.photo-area-ico').style.display = '';
+  document.querySelector('.photo-area-text').style.display = '';
+  hideResult();
+  hideError();
+}
   showToast('✓ ' + drug.name + ' dolaba eklendi');
+  resetPhoto();
 }
 
 function deleteDrug(id) { cabinet = cabinet.filter(d => d.id !== id); save(); renderCabinet(); updateBadge(); showToast('İlaç silindi'); }
