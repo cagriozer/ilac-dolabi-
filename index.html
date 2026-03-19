@@ -343,7 +343,7 @@ async function lookupBarcodeCode(barcode) {
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 1000,
-        messages: [{ role: "user", content: `Sen bir Türk eczacısısın. ${barcode} barkod numaralı Türkiye'de satılan ilacın bilgilerini ver. Bu barkod Furacin, Parol, Majezik gibi Türk ilaçlarından birine ait. Kesinlikle sadece şu JSON formatında yanıt ver, başka hiçbir şey yazma, açıklama yapma: {"name":"","purpose":"","diseases":"","dosage":"","active":""}
+        messages: [{ role: "user", content: `Sen bir Türk eczacısısın. ${barcode} barkod numaralı Türkiye'de satılan ilacın bilgilerini ver. Kesinlikle sadece şu JSON formatında yanıt ver, başka hiçbir şey yazma, açıklama yapma: {"name":"","purpose":"","diseases":"","dosage":"","active":""}
 , başka hiçbir şey yazma: {"name":"ilaç adı","purpose":"amacı","diseases":"hastalıklar","dosage":"doz","active":"etkin madde"}
  ${barcode}. Bu barkoda sahip ilacın adını ve bilgilerini biliyorsun. Mutlaka aşağıdaki JSON formatında yanıt ver, asla boş bırakma:
  ${barcode}. Bu barkoda ait Türkiye ilaç piyasasındaki ilacın bilgilerini JSON olarak ver: {"name":"","purpose":"","diseases":"","dosage":"","active":""}. Sadece JSON döndür.` }]
