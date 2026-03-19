@@ -337,7 +337,7 @@ async function lookupBarcodeCode(barcode) {
   const existing = cabinet.find(d => d.barcode === barcode);
   if (existing) { showLoading(false); showResult(existing, barcode); return; }
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("https:///.netlify/functions/claude", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
