@@ -215,12 +215,11 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
     <span class="search-ico">🔍</span>
     <input class="search-input" id="search-input" type="text" placeholder="İlaç adı, hastalık, etken madde..." oninput="doSearch()">
   </div>
-  <div class="filter-chips">
-    <div class="chip active" onclick="setFilter('all',this)">Tümü</div>
-    <div class="chip" onclick="setFilter('name',this)">İlaç Adı</div>
-    <div class="chip" onclick="setFilter('disease',this)">Hastalık</div>
-    <div class="chip" onclick="setFilter('active',this)">Etken Madde</div>
-    <div class="chip" onclick="setFilter('purpose',this)">Amaç</div>
+<div class="filter-chips">
+    <div class="chip active" onclick="toggleFilter('name',this)">İlaç Adı</div>
+    <div class="chip active" onclick="toggleFilter('disease',this)">Hastalık</div>
+    <div class="chip active" onclick="toggleFilter('active',this)">Etken Madde</div>
+    <div class="chip active" onclick="toggleFilter('purpose',this)">Amaç</div>
   </div>
   <div id="search-results"></div>
 </div>
@@ -450,7 +449,19 @@ function openModal(id) {
 function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
 document.getElementById('modal-overlay').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
 
-function setFilter(f, el) { searchFilter = f; document.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); el.classList.add('active'); doSearch(); }
+function let activeFilters = new Set(['name','disease','active','purpose']);
+
+function toggleFilter(f, el) {
+  if (activeFilters.has(f)) {
+    if (activeFilters.size === 1) return;
+    activeFilters.delete(f);
+    el.classList.remove('active');
+  } else {
+    activeFilters.add(f);
+    el.classList.add('active');
+  }
+  doSearch();
+}
 function doSearch() { renderSearch(document.getElementById('search-input').value.trim().toLowerCase()); }
 
 function renderSearch(q) {
@@ -458,11 +469,12 @@ function renderSearch(q) {
   if (!cabinet.length) { el.innerHTML = `<div class="empty-state"><div class="ico">🔍</div><p>Dolabınızda henüz ilaç yok.</p></div>`; return; }
   let filtered = cabinet;
   if (q) filtered = cabinet.filter(d => {
-    if (searchFilter === 'name') return d.name?.toLowerCase().includes(q);
-    if (searchFilter === 'disease') return d.diseases?.toLowerCase().includes(q);
-    if (searchFilter === 'active') return d.active?.toLowerCase().includes(q);
-    if (searchFilter === 'purpose') return d.purpose?.toLowerCase().includes(q);
-    return [d.name, d.diseases, d.active, d.purpose].some(f => f?.toLowerCase().includes(q));
+  return [
+      activeFilters.has('name') ? d.name : null,
+      activeFilters.has('disease') ? d.diseases : null,
+      activeFilters.has('active') ? d.active : null,
+      activeFilters.has('purpose') ? d.purpose : null,
+    ].some(f => f?.toLowerCase().includes(q));
   });
   if (!filtered.length) { el.innerHTML = `<div class="empty-state"><div class="ico">🚫</div><p>"${q}" için sonuç bulunamadı.</p></div>`; return; }
   el.innerHTML = filtered.map(drug => {
