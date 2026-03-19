@@ -270,9 +270,10 @@ let cabinet = [];
 let currentDrug = null;
 let photoB64 = null;
 let activeFilters = new Set(['name','disease','active','purpose']);
+let isLogin = true;
+let isLogin = true;
 let authToken = localStorage.getItem('auth-token');
 let authUser = JSON.parse(localStorage.getItem('auth-user') || 'null');
-let isLogin = true;
 
 // ═══ AUTH ═══
 async function authAction() {
