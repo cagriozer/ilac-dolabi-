@@ -16,10 +16,33 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:hidden}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 20% 20%,rgba(0,212,170,0.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(0,145,255,0.06) 0%,transparent 50%);pointer-events:none;z-index:0}
-.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px);padding:16px 20px 12px;border-bottom:1px solid var(--border)}
-.topbar-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.topbar-sub{font-size:11px;color:var(--muted);margin-top:1px}
-.tabs{display:flex;gap:6px;padding:12px 20px;position:sticky;top:72px;z-index:99;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px)}
+
+/* AUTH */
+.auth-screen{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px}
+.auth-screen.hidden{display:none}
+.auth-logo{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;text-align:center}
+.auth-sub{font-size:13px;color:var(--muted);margin-bottom:40px;text-align:center}
+.auth-card{background:var(--card);border-radius:24px;border:1px solid var(--border);padding:28px 24px;width:100%;max-width:380px}
+.auth-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:24px;text-align:center}
+.auth-field{margin-bottom:16px}
+.auth-label{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.auth-inp{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color 0.2s}
+.auth-inp:focus{border-color:var(--accent)}
+.auth-inp::placeholder{color:var(--muted)}
+.auth-btn{width:100%;padding:15px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0e1a;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;transition:all 0.2s}
+.auth-btn:active{transform:scale(0.98)}
+.auth-switch{text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
+.auth-switch span{color:var(--accent);cursor:pointer;font-weight:500}
+.auth-err{background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.25);border-radius:10px;padding:12px;font-size:13px;color:#ff8fa3;margin-bottom:16px;display:none}
+.auth-err.on{display:block}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px);padding:12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.topbar-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-user{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.logout-btn{background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.2);border-radius:8px;padding:5px 10px;color:var(--danger);font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+.tabs{display:flex;gap:6px;padding:10px 20px;position:sticky;top:57px;z-index:99;background:rgba(10,14,26,0.92);backdrop-filter:blur(20px)}
 .tab{flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:11px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center}
 .tab.active{background:linear-gradient(135deg,rgba(0,212,170,0.15),rgba(0,145,255,0.15));border-color:var(--accent);color:var(--accent)}
 .page{display:none;padding:16px 20px 100px;position:relative;z-index:1}
@@ -61,7 +84,7 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 .res-body{padding:16px 20px}
 .isec{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
 .isec:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-.ikey{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.ikey{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:5px}
 .ival{font-size:13.5px;color:var(--text);line-height:1.6}
 .ewarn{background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.3);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--warn);font-weight:500;margin-top:8px}
 .edanger{background:rgba(255,59,92,0.12);border-color:rgba(255,59,92,0.3);color:var(--danger)}
@@ -122,9 +145,36 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </style>
 </head>
 <body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="auth-screen">
+  <div class="auth-logo">💊 İlaç Dolabı</div>
+  <div class="auth-sub">Akıllı ilaç takip sistemi</div>
+  <div class="auth-card">
+    <div class="auth-title" id="auth-title">Giriş Yap</div>
+    <div class="auth-err" id="auth-err"></div>
+    <div class="auth-field">
+      <div class="auth-label">E-posta</div>
+      <input class="auth-inp" id="auth-email" type="email" placeholder="ornek@email.com">
+    </div>
+    <div class="auth-field">
+      <div class="auth-label">Şifre</div>
+      <input class="auth-inp" id="auth-password" type="password" placeholder="••••••••">
+    </div>
+    <button class="auth-btn" id="auth-btn" onclick="authAction()">Giriş Yap</button>
+    <div class="auth-switch" id="auth-switch">
+      Hesabın yok mu? <span onclick="toggleAuth()">Kayıt Ol</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
 <div class="topbar">
   <div class="topbar-title">💊 İlaç Dolabı</div>
-  <div class="topbar-sub">Akıllı ilaç takip sistemi</div>
+  <div class="topbar-user">
+    <span id="user-email-display"></span>
+    <button class="logout-btn" onclick="logout()">Çıkış</button>
+  </div>
 </div>
 <div class="tabs">
   <button class="tab active" onclick="showPage('scan')">📷 Tara</button>
@@ -215,16 +265,117 @@ body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%
 </div>
 <div class="toast" id="toast"></div>
 <script>
-let cabinet = JSON.parse(localStorage.getItem('ilac-dolabi') || '[]');
+// ═══ STATE ═══
+let cabinet = [];
 let currentDrug = null;
 let photoB64 = null;
 let activeFilters = new Set(['name','disease','active','purpose']);
+let authToken = localStorage.getItem('auth-token');
+let authUser = JSON.parse(localStorage.getItem('auth-user') || 'null');
+let isLogin = true;
 
-const DEMOS = [
-  {name:'Parol 500 mg',purpose:'Ağrı kesici ve ateş düşürücü',diseases:'Baş ağrısı, diş ağrısı, kas ağrısı, grip ateşi',dosage:'Günde 3-4 kez 1-2 tablet, dozlar arası en az 4 saat',active:'Parasetamol 500 mg'},
-  {name:'Arveles 25 mg',purpose:'Ağrı kesici, ateş düşürücü, anti-inflamatuar',diseases:'Romatizmal ağrılar, eklem iltihabı, bel ağrısı',dosage:'Günde 2-3 kez 1 tablet yemeklerden sonra',active:'Diklofenak sodyum 25 mg'},
-];
+// ═══ AUTH ═══
+async function authAction() {
+  const email = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value.trim();
+  if(!email || !password) { showAuthErr('E-posta ve şifre gerekli.'); return; }
+  if(password.length < 6) { showAuthErr('Şifre en az 6 karakter olmalı.'); return; }
 
+  const btn = document.getElementById('auth-btn');
+  btn.textContent = '...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch('/.netlify/functions/auth', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ action: isLogin ? 'login' : 'signup', email, password })
+    });
+    const d = await r.json();
+    if(d.error) { showAuthErr(d.error); btn.textContent = isLogin ? 'Giriş Yap' : 'Kayıt Ol'; btn.disabled = false; return; }
+    
+    authToken = d.token;
+    authUser = d.user;
+    localStorage.setItem('auth-token', authToken);
+    localStorage.setItem('auth-user', JSON.stringify(authUser));
+    showApp();
+  } catch(e) {
+    showAuthErr('Bağlantı hatası: ' + e.message);
+    btn.textContent = isLogin ? 'Giriş Yap' : 'Kayıt Ol';
+    btn.disabled = false;
+  }
+}
+
+function toggleAuth() {
+  isLogin = !isLogin;
+  document.getElementById('auth-title').textContent = isLogin ? 'Giriş Yap' : 'Kayıt Ol';
+  document.getElementById('auth-btn').textContent = isLogin ? 'Giriş Yap' : 'Kayıt Ol';
+  document.getElementById('auth-switch').innerHTML = isLogin
+    ? 'Hesabın yok mu? <span onclick="toggleAuth()">Kayıt Ol</span>'
+    : 'Zaten hesabın var mı? <span onclick="toggleAuth()">Giriş Yap</span>';
+  hideAuthErr();
+}
+
+function showAuthErr(msg) {
+  const e = document.getElementById('auth-err');
+  e.textContent = '❌ ' + msg;
+  e.classList.add('on');
+}
+
+function hideAuthErr() { document.getElementById('auth-err').classList.remove('on'); }
+
+function showApp() {
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('user-email-display').textContent = authUser?.email || '';
+  loadCabinet();
+}
+
+function logout() {
+  authToken = null; authUser = null;
+  localStorage.removeItem('auth-token');
+  localStorage.removeItem('auth-user');
+  cabinet = [];
+  document.getElementById('auth-screen').classList.remove('hidden');
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+}
+
+// ═══ SUPABASE CABINET ═══
+const SUPA_URL = 'https://ehyeceacbdeexzaxucwk.supabase.co';
+const SUPA_KEY = 'YOUR_ANON_KEY';
+
+async function loadCabinet() {
+  if(!authToken) return;
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/medicines?order=created_at.desc`, {
+      headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${authToken}`, 'Content-Type': 'application/json' }
+    });
+    cabinet = await r.json();
+    if(!Array.isArray(cabinet)) cabinet = [];
+    updateBadge();
+  } catch(e) { cabinet = []; }
+}
+
+async function saveToSupabase(drug) {
+  if(!authToken) return null;
+  const r = await fetch(`${SUPA_URL}/rest/v1/medicines`, {
+    method: 'POST',
+    headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${authToken}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+    body: JSON.stringify({ user_id: authUser.id, name: drug.name, purpose: drug.purpose, diseases: drug.diseases, dosage: drug.dosage, active: drug.active, expiry: drug.expiry, ref: drug.ref })
+  });
+  const d = await r.json();
+  return Array.isArray(d) ? d[0] : null;
+}
+
+async function deleteFromSupabase(id) {
+  if(!authToken) return;
+  await fetch(`${SUPA_URL}/rest/v1/medicines?id=eq.${id}`, {
+    method: 'DELETE',
+    headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${authToken}` }
+  });
+}
+
+// ═══ NAVIGATION ═══
 function showPage(n) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -236,6 +387,7 @@ function showPage(n) {
   if(n==='search') renderSearch('');
 }
 
+// ═══ PHOTO ═══
 function handlePhoto(input) {
   const file = input.files[0];
   if(!file) return;
@@ -251,19 +403,26 @@ function handlePhoto(input) {
   reader.readAsDataURL(file);
 }
 
+function resetPhoto() {
+  photoB64 = null;
+  document.getElementById('finput').value = '';
+  const img = document.getElementById('ppreview');
+  img.src = ''; img.classList.remove('visible');
+  document.getElementById('pico').style.display = '';
+  document.getElementById('ptxt').style.display = '';
+}
+
+// ═══ AI LOOKUP ═══
 async function analyzePhoto() {
   if(!photoB64) { showErr('Lütfen önce bir fotoğraf seçin.'); return; }
   hideRes(); hideErr(); showLoad(true,'Fotoğraf analiz ediliyor...');
   try {
     const r = await fetch('/.netlify/functions/claude', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ messages:[{
-        role:'user',
-        content:[
-          {type:'image', source:{type:'base64', media_type:'image/jpeg', data:photoB64}},
-          {type:'text', text:'Bu ilaç kutusunu incele. İlaç adını, amacını, hedef hastalıkları, kullanım dozunu ve etkin maddesini bul. SADECE şu JSON formatında yanıt ver, başka hiçbir şey yazma: {"name":"","purpose":"","diseases":"","dosage":"","active":""}'}
-        ]
-      }]})
+      body: JSON.stringify({ messages:[{ role:'user', content:[
+        {type:'image', source:{type:'base64', media_type:'image/jpeg', data:photoB64}},
+        {type:'text', text:'Bu ilaç kutusunu incele. İlaç adını, amacını, hedef hastalıkları, kullanım dozunu ve etkin maddesini bul. SADECE şu JSON formatında yanıt ver, başka hiçbir şey yazma: {"name":"","purpose":"","diseases":"","dosage":"","active":""}'}
+      ]}]})
     });
     const d = await r.json();
     const txt = (d.content||[]).map(i=>i.text||'').filter(Boolean).join('\n');
@@ -282,10 +441,7 @@ async function lookupManual() {
   try {
     const r = await fetch('/.netlify/functions/claude', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ messages:[{
-        role:'user',
-        content:`"${q}" adlı veya barkodlu Türkiye'de satılan ilaç hakkında bilgi ver. SADECE şu JSON formatında yanıt ver, başka hiçbir şey yazma: {"name":"","purpose":"","diseases":"","dosage":"","active":""}`
-      }]})
+      body: JSON.stringify({ messages:[{ role:'user', content:`"${q}" adlı veya barkodlu Türkiye'de satılan ilaç hakkında bilgi ver. SADECE şu JSON formatında yanıt ver, başka hiçbir şey yazma: {"name":"","purpose":"","diseases":"","dosage":"","active":""}`}]})
     });
     const d = await r.json();
     const txt = (d.content||[]).map(i=>i.text||'').filter(Boolean).join('\n');
@@ -298,10 +454,10 @@ async function lookupManual() {
 }
 
 function useDemo() {
-  const d = DEMOS[Math.floor(Math.random()*DEMOS.length)];
-  showRes(d,'Demo');
+  showRes({name:'Parol 500 mg',purpose:'Ağrı kesici ve ateş düşürücü',diseases:'Baş ağrısı, diş ağrısı, kas ağrısı, grip ateşi',dosage:'Günde 3-4 kez 1-2 tablet, dozlar arası en az 4 saat',active:'Parasetamol 500 mg'},'Demo');
 }
 
+// ═══ RESULT ═══
 function showRes(drug, ref) {
   currentDrug = {...drug, ref};
   document.getElementById('rname').textContent = drug.name;
@@ -326,36 +482,35 @@ function checkExpiry() {
   else a.innerHTML='';
 }
 
-function hideRes(){document.getElementById('resd').classList.remove('on')}
+function hideRes(){document.getElementById('resd').classList.remove('on');}
 function showLoad(v,msg){document.getElementById('loading').classList.toggle('on',v);if(msg)document.getElementById('ltxt').textContent=msg;}
 function showErr(msg){const e=document.getElementById('errd');e.textContent='❌ '+msg;e.classList.add('on');}
 function hideErr(){document.getElementById('errd').classList.remove('on');}
 
-function resetPhoto() {
-  photoB64 = null;
-  document.getElementById('finput').value = '';
-  const img = document.getElementById('ppreview');
-  img.src = ''; img.classList.remove('visible');
-  document.getElementById('pico').style.display = '';
-  document.getElementById('ptxt').style.display = '';
-}
-
-function saveDrug() {
+async function saveDrug() {
   if(!currentDrug) return;
   const expiry = document.getElementById('rexpiry').value;
-  const drug = {...currentDrug, expiry, id:Date.now()};
+  const drug = {...currentDrug, expiry};
   if(cabinet.find(d=>d.name===drug.name)){showToast('Bu ilaç zaten dolabınızda!');return;}
-  cabinet.unshift(drug);
-  save(); updateBadge();
+  const saved = await saveToSupabase(drug);
+  if(saved) cabinet.unshift(saved);
+  else cabinet.unshift({...drug, id: Date.now()});
+  updateBadge();
   showToast('✓ '+drug.name+' dolaba eklendi');
   resetPhoto();
   hideRes();
   document.getElementById('minput').value = '';
 }
 
-function deleteDrug(id){cabinet=cabinet.filter(d=>d.id!==id);save();renderCabinet();updateBadge();showToast('İlaç silindi');}
-function save(){localStorage.setItem('ilac-dolabi',JSON.stringify(cabinet));}
+async function deleteDrug(id) {
+  await deleteFromSupabase(id);
+  cabinet = cabinet.filter(d=>d.id!==id);
+  renderCabinet();
+  updateBadge();
+  showToast('İlaç silindi');
+}
 
+// ═══ CABINET ═══
 function expiryStatus(e) {
   if(!e) return 'ok';
   const diff = (new Date(e+'-01')-new Date())/(1000*60*60*24*30);
@@ -385,8 +540,8 @@ function renderCabinet() {
   if(!cabinet.length){list.innerHTML='<div class="empty"><div class="ico">💊</div><p>Dolabınız boş.<br>Fotoğraf çekerek veya ilaç adı girerek ekleyin.</p></div>';return;}
   list.innerHTML = cabinet.map(drug=>{
     const s = expiryStatus(drug.expiry);
-    return `<div class="dc ${s!=='ok'?s:''}" onclick="openModal(${drug.id})">
-      <div class="dc-top"><div class="dc-name">${drug.name}</div><button class="dc-del" onclick="event.stopPropagation();deleteDrug(${drug.id})">🗑</button></div>
+    return `<div class="dc ${s!=='ok'?s:''}" onclick="openModal('${drug.id}')">
+      <div class="dc-top"><div class="dc-name">${drug.name}</div><button class="dc-del" onclick="event.stopPropagation();deleteDrug('${drug.id}')">🗑</button></div>
       <div class="dc-purpose">${drug.purpose?.substring(0,80)}${drug.purpose?.length>80?'…':''}</div>
       <div class="dc-foot"><span class="etag ${s}">${expiryLabel(drug.expiry)}</span><span class="ai">${drug.active?.split(' ').slice(0,3).join(' ')}...</span></div>
     </div>`;
@@ -401,7 +556,7 @@ function updateBadge() {
 }
 
 function openModal(id) {
-  const drug = cabinet.find(d=>d.id===id);
+  const drug = cabinet.find(d=>String(d.id)===String(id));
   if(!drug) return;
   document.getElementById('mname').textContent = drug.name;
   const s = expiryStatus(drug.expiry);
@@ -420,15 +575,10 @@ function openModal(id) {
 function closeModal(){document.getElementById('moverlay').classList.remove('on');}
 document.getElementById('moverlay').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
 
+// ═══ SEARCH ═══
 function toggleFilter(f,el) {
-  if(activeFilters.has(f)){
-    if(activeFilters.size===1) return;
-    activeFilters.delete(f);
-    el.classList.remove('on');
-  } else {
-    activeFilters.add(f);
-    el.classList.add('on');
-  }
+  if(activeFilters.has(f)){if(activeFilters.size===1)return;activeFilters.delete(f);el.classList.remove('on');}
+  else{activeFilters.add(f);el.classList.add('on');}
   doSearch();
 }
 
@@ -447,7 +597,7 @@ function renderSearch(q) {
   if(!filtered.length){el.innerHTML=`<div class="empty"><div class="ico">🚫</div><p>"${q}" için sonuç bulunamadı.</p></div>`;return;}
   el.innerHTML = filtered.map(drug=>{
     const s = expiryStatus(drug.expiry);
-    return `<div class="dc ${s!=='ok'?s:''}" onclick="openModal(${drug.id})">
+    return `<div class="dc ${s!=='ok'?s:''}" onclick="openModal('${drug.id}')">
       <div class="dc-top"><div class="dc-name">${drug.name}</div></div>
       <div class="dc-purpose">${drug.purpose?.substring(0,80)}...</div>
       <div class="dc-foot"><span class="etag ${s}">${expiryLabel(drug.expiry)}</span><span class="ai">${drug.active?.split(' ').slice(0,3).join(' ')}</span></div>
@@ -455,13 +605,20 @@ function renderSearch(q) {
   }).join('');
 }
 
+// ═══ TOAST ═══
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('on');
   setTimeout(()=>t.classList.remove('on'),2500);
 }
 
-updateBadge();
+// ═══ INIT ═══
+if(authToken && authUser) {
+  showApp();
+} else {
+  document.getElementById('auth-screen').classList.remove('hidden');
+}
+
 if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 </script>
 </body>
