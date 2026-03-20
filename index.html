@@ -238,7 +238,8 @@ const SUPA_URL = 'https://ehyeceacbdeexzaxucwk.supabase.co';
 const SUPA_KEY = 'sb_publis...'; // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoeWVjZWFjYmRlZXh6YXh1Y3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDQ4MjIsImV4cCI6MjA4OTUyMDgyMn0.fKPZpl1KJbSt2fFfmqA7DUpL4eqGbspr4130WI0yHwY
 const ANTHROPIC_KEY = 'sk-ant-...'; // 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
 
-const sb = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+const sb = window.supabase.createClient(SUPA_URL, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoeWVjZWFjYmRlZXh6YXh1Y3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDQ4MjIsImV4cCI6MjA4OTUyMDgyMn0.fKPZpl1KJbSt2fFfmqA7DUpL4eqGbspr4130WI0yHwY');
+
 
 let cabinet = [];
 let currentDrug = null;
