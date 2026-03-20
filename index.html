@@ -257,9 +257,9 @@ async function authAction() {
   try {
     let result;
     if(isLogin) {
-      result = await supabaseClient.auth.signInWithPassword({email, password});
+      result = await sb.auth.signInWithPassword({email, password});
     } else {
-      result = await supabaseClient.auth.signUp({email, password});
+      result = await sb.auth.signUp({email, password});
     }
     if(result.error){showAuthErr(result.error.message);btn.textContent=isLogin?'Giriş Yap':'Kayıt Ol';btn.disabled=false;return;}
     if(!isLogin && !result.data.session){
@@ -288,7 +288,7 @@ async function showApp(user) {
 }
 
 async function logout() {
-  await supabaseClient.auth.signOut();
+  await sb.auth.signOut();
   cabinet=[];
   document.getElementById('auth-screen').classList.remove('hidden');
   document.getElementById('auth-email').value='';
@@ -297,15 +297,15 @@ async function logout() {
 
 // ═══ CABINET DB ═══
 async function loadCabinet() {
-  const {data,error} = await supabaseClient.from('medicines').select('*').order('created_at',{ascending:false});
+  const {data,error} = await sb.from('medicines').select('*').order('created_at',{ascending:false});
   cabinet = data||[];
   updateBadge();
   renderCabinet();
 }
 
 async function saveToDb(drug) {
-  const {data:{user}} = await supabaseClient.auth.getUser();
-  const {data,error} = await supabaseClient.from('medicines').insert({
+  const {data:{user}} = await sb.auth.getUser();
+  const {data,error} = await sb.from('medicines').insert({
     user_id:user.id, name:drug.name, purpose:drug.purpose,
     diseases:drug.diseases, dosage:drug.dosage, active:drug.active,
     expiry:drug.expiry, ref:drug.ref
@@ -314,7 +314,7 @@ async function saveToDb(drug) {
 }
 
 async function deleteFromDb(id) {
-  await supabaseClient.from('medicines').delete().eq('id',id);
+  await sb.from('medicines').delete().eq('id',id);
 }
 
 // ═══ NAVIGATION ═══
@@ -546,11 +546,11 @@ function showToast(msg){
 }
 
 // ═══ INIT ═══
-supabaseClient.auth.getSession().then(({data:{session}})=>{
+sb.auth.getSession().then(({data:{session}})=>{
   if(session) showApp(session.user);
 });
 
-supabaseClient.auth.onAuthStateChange((event,session)=>{
+sb.auth.onAuthStateChange((event,session)=>{
   if(session) showApp(session.user);
 });
 
